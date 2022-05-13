@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.io.UnsupportedEncodingException;
 import java.util.UUID;
@@ -118,7 +117,7 @@ class UserControllerTest {
 	private MvcResult getUser() throws Exception {
 		MvcResult mvcResult = this.mockMvc
 				.perform(get(UserConstants.API_VERSION + UserConstants.API_USERS + "/" + userID.toString()))
-				.andExpect(status().isOk()).andReturn();
+				.andReturn();
 		return mvcResult;
 	}
 
