@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import com.poc.bank.domain.model.User;
 import com.poc.bank.domain.outgoing.OutPortUser;
 import com.poc.bank.exception.UserNotFoundException;
-import com.poc.bank.exception.UserRegisteredException;
 
 @Component
 public class UserRepository implements OutPortUser {
@@ -18,12 +17,7 @@ public class UserRepository implements OutPortUser {
 
 	@Override
 	public User save(User user) {
-
-		if (dataUserRepository.findUserByEmail(user.getMail()) != null)
-			throw new UserRegisteredException();
-
 		return dataUserRepository.save(user);
-
 	}
 
 	@Override
@@ -33,12 +27,17 @@ public class UserRepository implements OutPortUser {
 
 	@Override
 	public void delete(UUID userId) {
+		dataUserRepository.deleteById(userId);
+	}
 
-		if (dataUserRepository.existsById(userId))
-			dataUserRepository.deleteById(userId);
-		else
-			throw new UserNotFoundException();
+	@Override
+	public boolean existsById(UUID userId) {
+		return dataUserRepository.existsById(userId);
+	}
 
+	@Override
+	public User findUserByEmail(String mail) {
+		return dataUserRepository.findUserByEmail(mail);
 	}
 
 }

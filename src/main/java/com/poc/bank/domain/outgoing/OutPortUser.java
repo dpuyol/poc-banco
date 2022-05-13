@@ -11,4 +11,9 @@ public interface OutPortUser {
 	User save(User user);
 
 	void delete(UUID userId);
+
+	boolean existsById(UUID userId);
+
+	User findUserByEmail(String mail);
+
 }

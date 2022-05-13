@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.poc.bank.domain.incoming.InPortUser;
 import com.poc.bank.domain.model.User;
 import com.poc.bank.domain.outgoing.OutPortUser;
+import com.poc.bank.exception.UserNotFoundException;
+import com.poc.bank.exception.UserRegisteredException;
 
 @Service
 public class UserService implements InPortUser {
@@ -22,13 +24,20 @@ public class UserService implements InPortUser {
 
 	@Override
 	public User create(User user) {
+
+		if (outPortUser.findUserByEmail(user.getMail()) != null)
+			throw new UserRegisteredException();
+
 		return outPortUser.save(user);
 	}
 
 	@Override
 	public void delete(UUID userId) {
-		outPortUser.delete(userId);
 
+		if (outPortUser.existsById(userId))
+			outPortUser.delete(userId);
+		else
+			throw new UserNotFoundException();
 	}
 
 }
