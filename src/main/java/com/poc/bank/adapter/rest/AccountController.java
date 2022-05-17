@@ -1,6 +1,5 @@
 package com.poc.bank.adapter.rest;
 
-import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +20,12 @@ public class AccountController {
 	Logger logger = LoggerFactory.getLogger(AccountController.class);
 
 	@Autowired
-	private ModelMapper modelMapper;
-	@Autowired
 	private InPortAccount accountUseCase;
 
 	@PostMapping
 	public ResponseEntity<AccountDTO> createAccount(@RequestBody AccountDTO account) {
 		logger.info("Create a new account: {}", account);
-		return new ResponseEntity<>(modelMapper.map(accountUseCase.create(account), AccountDTO.class),
-				HttpStatus.CREATED);
+		return new ResponseEntity<>(accountUseCase.create(account), HttpStatus.CREATED);
 	}
+
 }
