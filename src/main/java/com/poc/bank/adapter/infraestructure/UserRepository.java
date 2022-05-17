@@ -1,5 +1,6 @@
 package com.poc.bank.adapter.infraestructure;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class UserRepository implements OutPortUser {
 	}
 
 	@Override
-	public User findUserByEmail(String mail) {
+	public Optional<User> findUserByEmail(String mail) {
 		return dataUserRepository.findUserByEmail(mail);
 	}
 

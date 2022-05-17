@@ -48,12 +48,7 @@ class UserControllerTest {
 
 	@BeforeAll
 	void beforeAllTests() {
-		user = new User();
-		user.setName(UserConstants.NAME);
-		user.setSurname(UserConstants.SURNAME);
-		user.setMail(UserConstants.MAIL);
-		user.setAddress(UserConstants.ADDRESS);
-		user.setPassword(UserConstants.PASSWORD);
+		user = UserConstants.createUser();
 	}
 
 	@Test

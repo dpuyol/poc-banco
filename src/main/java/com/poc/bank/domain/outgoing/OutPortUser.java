@@ -1,5 +1,6 @@
 package com.poc.bank.domain.outgoing;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import com.poc.bank.domain.dao.User;
@@ -14,6 +15,6 @@ public interface OutPortUser {
 
 	boolean existsById(UUID userId);
 
-	User findUserByEmail(String mail);
+	Optional<User> findUserByEmail(String mail);
 
 }

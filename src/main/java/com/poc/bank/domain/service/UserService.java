@@ -25,7 +25,7 @@ public class UserService implements InPortUser {
 	@Override
 	public User create(User user) {
 
-		if (outPortUser.findUserByEmail(user.getMail()) != null)
+		if (outPortUser.findUserByEmail(user.getMail()).isPresent())
 			throw new UserRegisteredException();
 
 		return outPortUser.save(user);
@@ -34,10 +34,10 @@ public class UserService implements InPortUser {
 	@Override
 	public void delete(UUID userId) {
 
-		if (outPortUser.existsById(userId))
-			outPortUser.delete(userId);
-		else
+		if (!outPortUser.existsById(userId))
 			throw new UserNotFoundException();
+
+		outPortUser.delete(userId);
 	}
 
 }
