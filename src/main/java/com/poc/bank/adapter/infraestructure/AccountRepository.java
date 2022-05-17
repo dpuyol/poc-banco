@@ -1,6 +1,7 @@
 package com.poc.bank.adapter.infraestructure;
 
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,6 +23,16 @@ public class AccountRepository implements OutPortAccount {
 	@Override
 	public Account save(Account account) {
 		return accountDataRepository.save(account);
+	}
+
+	@Override
+	public Optional<Account> findById(UUID accountID) {
+		return accountDataRepository.findById(accountID);
+	}
+
+	@Override
+	public Account updateAccount(Account account) {
+		return accountDataRepository.saveAndFlush(account);
 	}
 
 }

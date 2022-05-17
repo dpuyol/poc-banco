@@ -14,5 +14,6 @@ public class AccountDTO {
 	private UUID id;
 	private UUID userID;
 	private String iban;
+	private Double amount;
 
 }

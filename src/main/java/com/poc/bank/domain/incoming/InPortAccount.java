@@ -6,4 +6,6 @@ public interface InPortAccount {
 
 	AccountDTO create(AccountDTO account);
 
+	AccountDTO addDepositAccount(AccountDTO account);
+
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,12 @@ public class AccountController {
 	public ResponseEntity<AccountDTO> createAccount(@RequestBody AccountDTO account) {
 		logger.info("Create a new account: {}", account);
 		return new ResponseEntity<>(accountUseCase.create(account), HttpStatus.CREATED);
+	}
+
+	@PutMapping
+	public ResponseEntity<AccountDTO> addDepositAccount(@RequestBody AccountDTO account) {
+		logger.info("Add a deposit amount into account: {}", account);
+		return new ResponseEntity<>(accountUseCase.addDepositAccount(account), HttpStatus.OK);
 	}
 
 }
