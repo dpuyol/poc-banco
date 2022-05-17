@@ -12,7 +12,7 @@ import com.poc.bank.domain.dao.Account;
 @Repository
 public interface AccountDataRepository extends JpaRepository<Account, UUID> {
 
-	@Query(value = "SELECT * FROM Account a WHERE a.number = ?1", nativeQuery = true)
-	Optional<Account> findAccountByNumber(String number);
+	@Query(value = "SELECT * FROM Account a WHERE a.iban = ?1", nativeQuery = true)
+	Optional<Account> findAccountByNumber(String iban);
 
 }

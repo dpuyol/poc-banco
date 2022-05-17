@@ -29,8 +29,8 @@ public class Account {
 	@Column(name = "userId")
 	private @Getter @Setter UUID userID;
 
-	@Column(name = "number", unique = true)
-	private @Getter @Setter String number;
+	@Column(name = "iban", unique = true)
+	private @Getter @Setter String iban;
 
 	@Column(name = "amount")
 	private @Getter @Setter Double amount;

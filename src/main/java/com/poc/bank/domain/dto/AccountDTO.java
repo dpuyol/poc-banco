@@ -13,6 +13,6 @@ public class AccountDTO {
 
 	private UUID id;
 	private UUID userID;
-	private String number;
+	private String iban;
 
 }

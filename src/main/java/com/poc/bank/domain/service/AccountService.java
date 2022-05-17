@@ -21,7 +21,7 @@ public class AccountService implements InPortAccount {
 	@Override
 	public AccountDTO create(AccountDTO accountDTO) {
 
-		if (outPortAccount.findAccountByNumber(accountDTO.getNumber()).isPresent())
+		if (outPortAccount.findAccountByNumber(accountDTO.getIban()).isPresent())
 			throw new AccountRegisteredException();
 
 		Account account = modelMapper.map(accountDTO, Account.class);
