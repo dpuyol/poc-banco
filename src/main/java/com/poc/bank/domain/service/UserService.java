@@ -5,8 +5,8 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.poc.bank.domain.dao.User;
 import com.poc.bank.domain.incoming.InPortUser;
-import com.poc.bank.domain.model.User;
 import com.poc.bank.domain.outgoing.OutPortUser;
 import com.poc.bank.exception.UserNotFoundException;
 import com.poc.bank.exception.UserRegisteredException;

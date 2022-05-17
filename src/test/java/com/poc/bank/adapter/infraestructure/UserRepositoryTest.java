@@ -9,7 +9,7 @@ import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.poc.bank.domain.model.User;
+import com.poc.bank.domain.dao.User;
 import com.poc.bank.util.UserConstants;
 
 @SpringBootTest
@@ -17,8 +17,8 @@ import com.poc.bank.util.UserConstants;
 class UserRepositoryTest {
 
 	@Autowired
-	UserRepository userRepository;
-	User user;
+	private UserRepository userRepository;
+	private User user;
 
 	@BeforeAll
 	void createUsers() {

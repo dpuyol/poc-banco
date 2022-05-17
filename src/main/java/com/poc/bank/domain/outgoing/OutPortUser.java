@@ -2,7 +2,7 @@ package com.poc.bank.domain.outgoing;
 
 import java.util.UUID;
 
-import com.poc.bank.domain.model.User;
+import com.poc.bank.domain.dao.User;
 
 public interface OutPortUser {
 

@@ -26,9 +26,9 @@ import org.springframework.test.web.servlet.MvcResult;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.poc.bank.domain.dao.User;
 import com.poc.bank.domain.dto.ErrorDTO;
 import com.poc.bank.domain.dto.UserDTO;
-import com.poc.bank.domain.model.User;
 import com.poc.bank.util.UserConstants;
 
 @SpringBootTest
@@ -43,8 +43,8 @@ class UserControllerTest {
 	@Autowired
 	private ObjectMapper objectMapper;
 
-	User user;
-	UUID userID;
+	private User user;
+	private UUID userID;
 
 	@BeforeAll
 	void beforeAllTests() {

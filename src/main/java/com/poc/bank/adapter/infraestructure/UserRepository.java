@@ -5,7 +5,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.poc.bank.domain.model.User;
+import com.poc.bank.domain.dao.User;
 import com.poc.bank.domain.outgoing.OutPortUser;
 import com.poc.bank.exception.UserNotFoundException;
 
@@ -13,7 +13,7 @@ import com.poc.bank.exception.UserNotFoundException;
 public class UserRepository implements OutPortUser {
 
 	@Autowired
-	private DataUserRepository dataUserRepository;
+	private UserDataRepository dataUserRepository;
 
 	@Override
 	public User save(User user) {

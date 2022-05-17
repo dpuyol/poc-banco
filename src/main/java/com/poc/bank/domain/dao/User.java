@@ -1,4 +1,4 @@
-package com.poc.bank.domain.model;
+package com.poc.bank.domain.dao;
 
 import java.util.UUID;
 
@@ -19,26 +19,28 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@Setter
+@Getter
 public class User {
 
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
-	private @Getter UUID id;
+	private UUID id;
 
 	@Column(name = "name")
-	private @Getter @Setter String name;
+	private String name;
 
 	@Column(name = "surname")
-	private @Getter @Setter String surname;
+	private String surname;
 
 	@Column(name = "mail", unique = true)
-	private @Getter @Setter String mail;
+	private String mail;
 
 	@Column(name = "address")
-	private @Getter @Setter String address;
+	private String address;
 
 	@Column(name = "password")
-	private @Getter @Setter String password;
+	private String password;
 
 }

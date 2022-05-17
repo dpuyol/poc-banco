@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.poc.bank.domain.dao.User;
 import com.poc.bank.domain.dto.UserDTO;
 import com.poc.bank.domain.incoming.InPortUser;
-import com.poc.bank.domain.model.User;
 
 @RestController
 @RequestMapping("/v1/users")
@@ -38,8 +38,8 @@ public class UserController {
 	}
 
 	@PostMapping
-	public ResponseEntity<UserDTO> setUserId(@RequestBody User user) {
-		logger.info("Put a new user: {}", user);
+	public ResponseEntity<UserDTO> createUser(@RequestBody User user) {
+		logger.info("Create a new user: {}", user);
 		return new ResponseEntity<>(modelMapper.map(userUseCase.create(user), UserDTO.class), HttpStatus.CREATED);
 	}
 
