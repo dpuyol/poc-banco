@@ -31,6 +31,9 @@ public class UserController {
 	@Autowired
 	private InPortUser userUseCase;
 
+	/*
+	 * TODO modelmapper should be in a service
+	 */
 	@GetMapping(value = "/{userID}")
 	public ResponseEntity<UserDTO> getUserId(@PathVariable("userID") UUID userId) {
 		logger.info("Get a userID: {}", userId);
