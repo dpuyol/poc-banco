@@ -25,7 +25,7 @@ public class AccountExceptionHandler {
 
 	@ResponseBody
 	@ExceptionHandler(AccounNotFoundException.class)
-	public ResponseEntity<ErrorDTO> handleCreateAccountException(AccounNotFoundException ex) {
+	public ResponseEntity<ErrorDTO> handleNotFounfException(AccounNotFoundException ex) {
 		ErrorDTO errorDTO = new ErrorDTO(HttpStatus.NOT_FOUND.value(), "Account not found", LocalTime.now().toString());
 		return new ResponseEntity<>(errorDTO, HttpStatus.NOT_FOUND);
 	}

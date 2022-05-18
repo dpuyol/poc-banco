@@ -30,9 +30,9 @@ public class AccountController {
 	}
 
 	@PutMapping
-	public ResponseEntity<AccountDTO> addDepositAccount(@RequestBody AccountDTO account) {
-		logger.info("Add a deposit amount into account: {}", account);
-		return new ResponseEntity<>(accountUseCase.addDepositAccount(account), HttpStatus.OK);
+	public ResponseEntity<AccountDTO> addDepositIbanAccount(@RequestBody AccountDTO account) {
+		logger.info("Add a deposit amount into iban account: {}", account);
+		return new ResponseEntity<>(accountUseCase.addDepositIbanAccount(account), HttpStatus.OK);
 	}
 
 }

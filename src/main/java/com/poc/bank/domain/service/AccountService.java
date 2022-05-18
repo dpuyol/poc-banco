@@ -1,6 +1,10 @@
 package com.poc.bank.domain.service;
 
+import java.util.Optional;
+
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +17,8 @@ import com.poc.bank.exception.AccountRegisteredException;
 
 @Service
 public class AccountService implements InPortAccount {
+
+	Logger logger = LoggerFactory.getLogger(AccountService.class);
 
 	@Autowired
 	private OutPortAccount outPortAccount;
@@ -32,10 +38,19 @@ public class AccountService implements InPortAccount {
 	}
 
 	@Override
-	public AccountDTO addDepositAccount(AccountDTO accountDTO) {
-		Account account = outPortAccount.findById(accountDTO.getId()).orElseThrow(AccounNotFoundException::new);
+	public AccountDTO addDepositIbanAccount(AccountDTO accountDTO) {
+
+		logger.info("Deposit in iban account: {}", accountDTO);
+		Account account = outPortAccount.findAccountByNumber(accountDTO.getIban())
+				.orElseThrow(AccounNotFoundException::new);
 		account.setAmount(Double.sum(account.getAmount(), accountDTO.getAmount()));
+
 		return modelMapper.map(outPortAccount.updateAccount(account), AccountDTO.class);
+	}
+
+	@Override
+	public Optional<Account> findAccountByNumber(String number) {
+		return outPortAccount.findAccountByNumber(number);
 	}
 
 }
