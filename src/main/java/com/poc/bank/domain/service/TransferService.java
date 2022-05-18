@@ -1,6 +1,9 @@
 package com.poc.bank.domain.service;
 
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -61,6 +64,13 @@ public class TransferService implements InPortTransfer {
 		accountDTO.setAmount(operation.equals(OperationAccountEnum.OPERATION_ACCOUNT_ORIGIN) ? -transferDTO.getAmount()
 				: transferDTO.getAmount());
 		inPortAccount.addDepositIbanAccount(accountDTO);
+	}
+
+	@Override
+	public List<TransferDTO> getTransfer(String iban) {
+		List<Transfer> trasnfer = outPortTransfer.getTransfer(iban);
+		return modelMapper.map(trasnfer, new TypeToken<List<TransferDTO>>() {
+		}.getType());
 	}
 
 }

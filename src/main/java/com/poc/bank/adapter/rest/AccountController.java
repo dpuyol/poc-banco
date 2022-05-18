@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,6 +35,12 @@ public class AccountController {
 	public ResponseEntity<AccountDTO> addDepositIbanAccount(@RequestBody AccountDTO account) {
 		logger.info("Add a deposit amount into iban account: {}", account);
 		return new ResponseEntity<>(accountUseCase.addDepositIbanAccount(account), HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/{iban}")
+	public ResponseEntity<AccountDTO> getAccountAndMoves(@PathVariable("iban") String iban) {
+		logger.info("Get a account and movements with iban: {}", iban);
+		return new ResponseEntity<>(accountUseCase.getAccountAndMoves(iban), HttpStatus.OK);
 	}
 
 }

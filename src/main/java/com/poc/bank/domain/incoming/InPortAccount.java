@@ -13,4 +13,6 @@ public interface InPortAccount {
 
 	Optional<Account> findAccountByNumber(String number);
 
+	AccountDTO getAccountAndMoves(String iban);
+
 }

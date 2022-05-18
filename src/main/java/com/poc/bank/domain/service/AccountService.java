@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.poc.bank.domain.dao.Account;
 import com.poc.bank.domain.dto.AccountDTO;
 import com.poc.bank.domain.incoming.InPortAccount;
+import com.poc.bank.domain.incoming.InPortTransfer;
 import com.poc.bank.domain.outgoing.OutPortAccount;
 import com.poc.bank.exception.AccounNotFoundException;
 import com.poc.bank.exception.AccountRegisteredException;
@@ -22,6 +23,9 @@ public class AccountService implements InPortAccount {
 
 	@Autowired
 	private OutPortAccount outPortAccount;
+
+	@Autowired
+	private InPortTransfer inPortTransfer;
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -55,6 +59,14 @@ public class AccountService implements InPortAccount {
 	@Override
 	public Optional<Account> findAccountByNumber(String number) {
 		return outPortAccount.findAccountByNumber(number);
+	}
+
+	@Override
+	public AccountDTO getAccountAndMoves(String iban) {
+		AccountDTO accountDTO = modelMapper.map(findAccountByNumber(iban).orElseThrow(AccounNotFoundException::new),
+				AccountDTO.class);
+		accountDTO.setTransfer(inPortTransfer.getTransfer(iban));
+		return accountDTO;
 	}
 
 }
