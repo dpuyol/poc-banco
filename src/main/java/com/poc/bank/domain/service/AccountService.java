@@ -1,7 +1,5 @@
 package com.poc.bank.domain.service;
 
-import java.util.Optional;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +16,7 @@ public class AccountService implements InPortAccount {
 
 	@Autowired
 	private OutPortAccount outPortAccount;
+
 	@Autowired
 	private ModelMapper modelMapper;
 
@@ -29,19 +28,14 @@ public class AccountService implements InPortAccount {
 
 		Account account = modelMapper.map(accountDTO, Account.class);
 		account.initializeAmount();
-
 		return modelMapper.map(outPortAccount.save(account), AccountDTO.class);
 	}
 
 	@Override
 	public AccountDTO addDepositAccount(AccountDTO accountDTO) {
-
-		Optional<Account> account = outPortAccount.findById(accountDTO.getId());
-		if (account.isEmpty())
-			throw new AccounNotFoundException();
-
-		account.get().setAmount(Double.sum(account.get().getAmount(), accountDTO.getAmount()));
-		return modelMapper.map(outPortAccount.updateAccount(account.get()), AccountDTO.class);
+		Account account = outPortAccount.findById(accountDTO.getId()).orElseThrow(AccounNotFoundException::new);
+		account.setAmount(Double.sum(account.getAmount(), accountDTO.getAmount()));
+		return modelMapper.map(outPortAccount.updateAccount(account), AccountDTO.class);
 	}
 
 }
