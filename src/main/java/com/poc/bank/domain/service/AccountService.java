@@ -29,6 +29,10 @@ public class AccountService implements InPortAccount {
 	@Override
 	public AccountDTO create(AccountDTO accountDTO) {
 
+		/*
+		 * TODO: Check if UserID in accountDTO already registered
+		 */
+
 		if (outPortAccount.findAccountByNumber(accountDTO.getIban()).isPresent())
 			throw new AccountRegisteredException();
 
