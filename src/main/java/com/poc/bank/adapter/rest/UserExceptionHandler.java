@@ -18,16 +18,16 @@ public class UserExceptionHandler {
 	@ResponseBody
 	@ExceptionHandler(UserNotFoundException.class)
 	public ResponseEntity<ErrorDTO> handleUserNotFoundException(UserNotFoundException ex) {
-		ErrorDTO response = new ErrorDTO(HttpStatus.NOT_FOUND.value(), "User not found", LocalTime.now().toString());
-		return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+		ErrorDTO errorDTO = new ErrorDTO(HttpStatus.NOT_FOUND.value(), "User not found", LocalTime.now().toString());
+		return new ResponseEntity<>(errorDTO, HttpStatus.NOT_FOUND);
 	}
 
 	@ResponseBody
 	@ExceptionHandler(UserRegisteredException.class)
 	public ResponseEntity<ErrorDTO> handleUserRegisteredException(UserRegisteredException ex) {
-		ErrorDTO response = new ErrorDTO(HttpStatus.CONFLICT.value(), "User with this email already in use",
+		ErrorDTO errorDTO = new ErrorDTO(HttpStatus.CONFLICT.value(), "User with this email already in use",
 				LocalTime.now().toString());
-		return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+		return new ResponseEntity<>(errorDTO, HttpStatus.CONFLICT);
 	}
 
 }
